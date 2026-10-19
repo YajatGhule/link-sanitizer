@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "Link Sanitizer",
+  "version": "1.0.0",
+  "description": "Strips tracking junk from links you copy, so the clipboard only holds the bare-minimum URL.",
+  "icons": { "16": "icons/16.png", "32": "icons/32.png", "48": "icons/48.png", "128": "icons/128.png" },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Link Sanitizer",
+    "default_icon": { "16": "icons/16.png", "32": "icons/32.png" }
+  },
+  "background": { "service_worker": "background.js" },
+  "permissions": ["clipboardRead", "clipboardWrite", "contextMenus", "offscreen", "storage", "activeTab"],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["linkclean.js", "content.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content-main.js"],
+      "run_at": "document_start",
+      "all_frames": true,
+      "world": "MAIN"
+    }
+  ],
+  "commands": {
+    "clean-clipboard": {
+      "suggested_key": { "default": "Alt+Shift+L" },
+      "description": "Clean the links currently on the clipboard"
+    }
+  }
+}

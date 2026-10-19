@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Link Sanitizer</title>
+<meta name="description" content="Paste a link, get the bare-minimum URL. Strips tracking parameters and unwraps redirects, entirely in your browser.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<main>
+  <header class="hero">
+    <img src="favicon.svg" alt="" width="56" height="56">
+    <h1>Link Sanitizer</h1>
+    <p>Paste a link. Get back only what's needed to open it, without the tracking parameters, redirect wrappers and share IDs.</p>
+  </header>
+
+  <section class="tool" aria-label="Clean a link">
+    <div class="field">
+      <label for="input">Link or text</label>
+      <textarea id="input" rows="4" spellcheck="false" autofocus
+        placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ&si=AbC123&pp=ygU…"></textarea>
+      <div class="row">
+        <button id="paste" type="button">Paste from clipboard</button>
+        <label class="check"><input type="checkbox" id="strict"> Strict mode</label>
+        <button id="clear" type="button" class="ghost">Clear</button>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="output">Clean</label>
+      <div class="output-wrap">
+        <output id="output" class="output" aria-live="polite"></output>
+        <button id="copy" type="button" class="primary">Copy</button>
+      </div>
+      <ul id="removed" class="removed" aria-label="What was removed"></ul>
+    </div>
+
+    <div class="examples">
+      <span>Try:</span>
+      <button type="button" data-ex="https://www.amazon.com/Kindle-Paperwhite-Storage-Adjustable-Temperature/dp/B08KTZ8249/ref=sr_1_3?crid=2X1Y&keywords=kindle&qid=1697&sprefix=kin%2Caps&sr=8-3">Amazon</button>
+      <button type="button" data-ex="https://youtu.be/dQw4w9WgXcQ?si=Xyz123AbC&t=43">YouTube share</button>
+      <button type="button" data-ex="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&url=https%3A%2F%2Fwiki.archlinux.org%2Ftitle%2FHyprland%3Futm_source%3Dgoogle&usg=AOvVaw0">Google redirect</button>
+      <button type="button" data-ex="https://x.com/archlinux/status/1712345678901234567?s=46&t=Qz8kL2mN">X post</button>
+      <button type="button" data-ex="https://example.com/article?id=42&utm_source=newsletter&utm_medium=email&fbclid=IwAR3x&gclid=Cj0K#comments">Newsletter link</button>
+    </div>
+  </section>
+
+  <section class="get">
+    <article>
+      <h2>Chrome extension</h2>
+      <p>Cleans links as you copy them: <kbd>Ctrl</kbd>+<kbd>C</kbd>, a site's own "Copy link" or "Share" button, or right-click → <em>Copy clean link</em>. <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>L</kbd> cleans whatever is already on the clipboard.</p>
+      <a class="btn primary" href="https://github.com/YajatGhule/link-sanitizer/releases/latest/download/link-sanitizer-extension.zip">Download extension</a>
+      <ol>
+        <li>Unzip it somewhere permanent.</li>
+        <li>Open <code>chrome://extensions</code> and switch on <b>Developer mode</b>.</li>
+        <li>Click <b>Load unpacked</b> and pick the unzipped folder.</li>
+      </ol>
+    </article>
+    <article>
+      <h2>Command line</h2>
+      <p>One Python file with no dependencies. On Wayland, <code>linkclean -c</code> cleans the clipboard in place.</p>
+      <pre><code>curl -Lo ~/.local/bin/linkclean \
+  https://raw.githubusercontent.com/YajatGhule/link-sanitizer/main/linkclean.py
+chmod +x ~/.local/bin/linkclean
+linkclean 'https://…'</code></pre>
+    </article>
+  </section>
+
+  <section class="what">
+    <h2>What it does</h2>
+    <dl>
+      <dt>Unwraps redirects</dt><dd>Google, Facebook, Instagram, Messenger, YouTube, DuckDuckGo, Reddit, Steam, LinkedIn, Slack, Bing</dd>
+      <dt>Removes trackers</dt><dd><code>utm_*</code>, <code>fbclid</code>, <code>gclid</code>, <code>si</code>, <code>igsh</code>, <code>mc_cid</code>, <code>_hsenc</code>, <code>srsltid</code> and about 70 more</dd>
+      <dt>Shortens known sites</dt><dd>Amazon → <code>/dp/ASIN</code>, eBay → <code>/itm/ID</code>, YouTube → <code>?v=ID</code>, X / Instagram / Reddit / TikTok / Spotify → path only</dd>
+      <dt>Keeps what matters</dt><dd>On other sites, parameters like <code>?id=42</code> stay. Strict mode drops everything after the path.</dd>
+    </dl>
+    <p class="privacy">Runs entirely in your browser. Nothing you paste leaves this page.</p>
+  </section>
+</main>
+<footer>
+  <a href="https://github.com/YajatGhule/link-sanitizer">Source on GitHub</a>
+</footer>
+<script src="extension/linkclean.js"></script>
+<script src="site.js"></script>
+</body>
+</html>

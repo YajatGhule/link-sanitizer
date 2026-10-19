@@ -1,0 +1,120 @@
+{
+  "default": [
+    {
+      "in": "https://www.youtube.com/watch?v=dQw4w9WgXcQ&list=RDdQw&index=2&pp=ygU&si=abc&feature=share",
+      "out": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    },
+    {
+      "in": "https://youtu.be/dQw4w9WgXcQ?si=Xyz123&t=42",
+      "out": "https://youtu.be/dQw4w9WgXcQ?t=42"
+    },
+    {
+      "in": "https://m.youtube.com/watch?v=abc&t=10s",
+      "out": "https://youtube.com/watch?v=abc&t=10s"
+    },
+    {
+      "in": "https://www.amazon.com/Some-Long-Product-Name/dp/B08N5WRWNW/ref=sr_1_3?crid=2X&keywords=x&qid=1&sr=8-3",
+      "out": "https://www.amazon.com/dp/B08N5WRWNW"
+    },
+    {
+      "in": "https://www.amazon.co.uk/gp/product/b08n5wrwnw?psc=1",
+      "out": "https://www.amazon.co.uk/dp/B08N5WRWNW"
+    },
+    {
+      "in": "https://www.ebay.com/itm/Cool-Thing/1234567890?hash=item&_trkparms=x",
+      "out": "https://www.ebay.com/itm/1234567890"
+    },
+    {
+      "in": "https://x.com/user/status/123?s=20&t=abcdef",
+      "out": "https://x.com/user/status/123"
+    },
+    {
+      "in": "https://www.instagram.com/p/Cabc/?igsh=MWx0&utm_source=ig_web",
+      "out": "https://www.instagram.com/p/Cabc"
+    },
+    {
+      "in": "https://open.spotify.com/track/4uLU6hMCjMI75M1A2tKUQC?si=ab12cd",
+      "out": "https://open.spotify.com/track/4uLU6hMCjMI75M1A2tKUQC"
+    },
+    {
+      "in": "https://www.reddit.com/r/archlinux/comments/abc/title/?share_id=x&utm_medium=android_app",
+      "out": "https://www.reddit.com/r/archlinux/comments/abc/title"
+    },
+    {
+      "in": "https://www.google.com/url?sa=t&rct=j&q=&url=https%3A%2F%2Fexample.com%2Fpage%3Futm_source%3Dgoogle%26id%3D7&usg=AOv",
+      "out": "https://example.com/page?id=7"
+    },
+    {
+      "in": "https://l.facebook.com/l.php?u=https%3A%2F%2Fexample.org%2Fa%3Ffbclid%3DIwAR&h=AT0",
+      "out": "https://example.org/a"
+    },
+    {
+      "in": "https://duckduckgo.com/l/?uddg=https%3A%2F%2Fwiki.archlinux.org%2Ftitle%2FHyprland&rut=abc",
+      "out": "https://wiki.archlinux.org/title/Hyprland"
+    },
+    {
+      "in": "https://www.youtube.com/redirect?event=video_description&redir_token=x&q=https%3A%2F%2Fgithub.com%2Ffoo%2Fbar",
+      "out": "https://github.com/foo/bar"
+    },
+    {
+      "in": "https://www.google.com/search?q=arch+linux&sca_esv=1&source=hp&ei=xyz&oq=arch&gs_lp=abc",
+      "out": "https://www.google.com/search?q=arch+linux"
+    },
+    {
+      "in": "https://example.com/article?id=5&utm_source=newsletter&utm_campaign=x&fbclid=abc&gclid=1#section-2",
+      "out": "https://example.com/article?id=5#section-2"
+    },
+    {
+      "in": "https://example.com/a#:~:text=hello",
+      "out": "https://example.com/a"
+    },
+    {
+      "in": "HTTPS://Example.COM:443/path?mc_cid=1&q=keep",
+      "out": "https://example.com/path?q=keep"
+    },
+    {
+      "in": "https://en.wikipedia.org/wiki/Linux?wprov=sfla1#History",
+      "out": "https://en.wikipedia.org/wiki/Linux#History"
+    },
+    {
+      "in": "https://github.com/foo/bar/issues?q=is%3Aopen&utm_source=x#readme",
+      "out": "https://github.com/foo/bar/issues?q=is:open#readme"
+    },
+    {
+      "in": "https://en.m.wikipedia.org/wiki/Arch_Linux?wprov=x",
+      "out": "https://en.wikipedia.org/wiki/Arch_Linux"
+    },
+    {
+      "in": "https://www.bing.com/ck/a?!&&p=abc&u=a1aHR0cHM6Ly9leGFtcGxlLmNvbS94P3V0bV9zb3VyY2U9Ymk&ntb=1",
+      "out": "https://example.com/x"
+    },
+    {
+      "in": "https://www.tiktok.com/@user/video/7300000000?is_from_webapp=1&sender_device=pc",
+      "out": "https://www.tiktok.com/@user/video/7300000000"
+    },
+    {
+      "in": "https://www.youtube.com/watch?list=PLabc&index=3",
+      "out": "https://www.youtube.com/watch?list=PLabc"
+    },
+    {
+      "in": "https://news.ycombinator.com/item?id=123&utm_source=x",
+      "out": "https://news.ycombinator.com/item?id=123"
+    },
+    {
+      "in": "https://example.com/search?q=a%20b&utm_medium=email",
+      "out": "https://example.com/search?q=a+b"
+    }
+  ],
+  "strict": [
+    {
+      "in": "https://example.com/a?id=5#x",
+      "out": "https://example.com/a"
+    }
+  ],
+  "text": [
+    {
+      "in": "see https://x.com/a/status/1?s=20. and (https://youtu.be/abc?si=z)",
+      "out": "see https://x.com/a/status/1. and (https://youtu.be/abc)"
+    }
+  ]
+}

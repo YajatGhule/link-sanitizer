@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <img src="icons/32.png" alt="" width="24" height="24">
+    <h1>Link Sanitizer</h1>
+    <label class="switch" title="Clean links automatically when you copy">
+      <input type="checkbox" id="autoClean"><span></span>
+    </label>
+  </header>
+  <p class="status" id="status">Auto-clean on copy is on</p>
+
+  <section>
+    <h2>Clipboard</h2>
+    <div class="diff" id="clipDiff"><div class="empty">Reading clipboard…</div></div>
+    <button id="cleanClip" class="primary">Clean clipboard</button>
+  </section>
+
+  <section>
+    <h2>This tab</h2>
+    <div class="diff" id="tabDiff"></div>
+    <button id="copyTab">Copy clean URL</button>
+  </section>
+
+  <section>
+    <h2>Clean any text</h2>
+    <textarea id="input" rows="3" placeholder="Paste a link or a whole message…" spellcheck="false"></textarea>
+    <div class="diff" id="inputDiff" hidden></div>
+    <button id="copyInput" hidden>Copy cleaned text</button>
+  </section>
+
+  <footer>
+    <label class="check"><input type="checkbox" id="strict"> Strict mode <span class="hint">drop all params on unknown sites</span></label>
+    <div class="links">
+      <span>Shortcut <kbd id="shortcut">Alt+Shift+L</kbd></span>
+      <a href="https://yajatghule.github.io/link-sanitizer/" target="_blank">Website</a>
+    </div>
+  </footer>
+  <script src="linkclean.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

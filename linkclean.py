@@ -176,8 +176,10 @@ def clean(url, strict=False, expand=False):
         netloc = f"{host}:{port}"
     else:
         netloc = host
-    if host.startswith("m.") and _host_is(host, "youtube.com", "wikipedia.org", "facebook.com", "twitter.com", "x.com", "reddit.com"):
-        netloc = netloc[2:] if not _host_is(host, "wikipedia.org") else netloc.replace(".m.", ".")
+    if host.startswith("m.") and _host_is(host, "youtube.com", "facebook.com", "twitter.com", "x.com", "reddit.com"):
+        netloc = netloc[2:]
+    elif host.endswith(".m.wikipedia.org"):
+        netloc = netloc.replace(".m.", ".")
     path = p.path or "/"
     query = parse_qsl(p.query, keep_blank_values=True)
     fragment = p.fragment
