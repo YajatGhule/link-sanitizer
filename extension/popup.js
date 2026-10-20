@@ -11,6 +11,9 @@ function renderDiff(el, before, after, emptyMsg) {
   const div = (cls, text) => Object.assign(document.createElement("div"), { className: cls, textContent: text });
   if (!before) return el.append(div("empty", emptyMsg));
   if (before === after) return el.append(div("same", after + "\n✓ already clean"));
+  // Count distinct links touched so the user sees what changed at a glance.
+  const urls = (before.match(/https?:\/\/\S+/g) || []).length;
+  if (urls) el.append(div("summary", `${urls} link${urls > 1 ? "s" : ""} cleaned`));
   el.append(div("old", before), div("new", after));
 }
 

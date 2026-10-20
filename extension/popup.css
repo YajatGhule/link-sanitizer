@@ -24,6 +24,7 @@ section { background: var(--card); border: 1px solid var(--line); border-radius:
 .diff .old { color: var(--bad); background: var(--bad-bg); text-decoration: line-through; padding: 3px 5px; border-radius: 5px; margin-bottom: 4px; opacity: .85; }
 .diff .new { background: var(--good-bg); padding: 3px 5px; border-radius: 5px; }
 .diff .same, .diff .empty { color: var(--muted); }
+.diff .summary { font: 600 11px system-ui, sans-serif; color: var(--accent); margin: 0 0 4px; }
 button {
   width: 100%; padding: 7px 10px; border-radius: 7px; border: 1px solid var(--line);
   background: var(--card); color: var(--ink); font: inherit; font-weight: 600; cursor: pointer;

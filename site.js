@@ -39,6 +39,8 @@ function render() {
   output.textContent = cleaned;
   $("copy").disabled = !cleaned;
   removed.replaceChildren();
+  const saved = text.length - cleaned.length;
+  $("stat").textContent = cleaned && saved > 0 ? `${saved} characters removed` : "";
   if (cleaned) {
     const chips = explain(text);
     if (!chips.length) chips.push(["note", text.match(URL_RE) ? "Already clean ✓" : "No links found"]);
@@ -79,5 +81,14 @@ $("clear").onclick = () => { input.value = ""; render(); input.focus(); };
 $("strict").onchange = render;
 input.addEventListener("input", render);
 for (const b of document.querySelectorAll("[data-ex]")) b.onclick = () => { input.value = b.dataset.ex; render(); };
+
+// Cmd/Ctrl+Enter copies the result without reaching for the mouse.
+input.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && (e.metaKey || e.ctrlKey) && output.textContent) $("copy").click();
+});
+
+// Shared links: index.html?url=<link> pre-fills the box.
+const shared = new URLSearchParams(location.search).get("url");
+if (shared) input.value = shared;
 
 render();
